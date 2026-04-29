@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Engraving Studio MILA</title>
+  <meta name="description" content="Browse the work of Engraving Studio MILA — custom engravings on wood, glass, metal, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────── -->
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="Logo Text.png" alt="MILA logo" />
+    </a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="index.html#about"    data-en="About"    data-lv="Par mums">About</a></li>
+        <li><a href="index.html#services" data-en="Services" data-lv="Pakalpojumi">Services</a></li>
+        <li><a href="index.html#contact"  data-en="Contact"  data-lv="Kontakti">Contact</a></li>
+        <li><a href="gallery.html" class="active" data-en="Gallery" data-lv="Galerija">Gallery</a></li>
+      </ul>
+      <button class="lang-toggle" id="lang-toggle">LV</button>
+      <div class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- ── Gallery Hero ───────────────────────────────── -->
+    <div class="gallery-hero">
+      <p class="section-label" data-en="Our Work" data-lv="Mūsu darbi">Our Work</p>
+      <h1 data-en="Gallery" data-lv="Galerija">Gallery</h1>
+      <p data-en="A collection of our custom engravings — each piece made with care."
+         data-lv="Mūsu individuālo gravējumu kolekcija — katrs darbs izgatavots ar rūpību.">
+        A collection of our custom engravings — each piece made with care.
+      </p>
+    </div>
+
+    <!-- ── Gallery Grid ───────────────────────────────── -->
+    <!--
+      TO ADD PHOTOS:
+      Copy the block below and replace "your-photo.jpg" with your image filename.
+      Place your images in the same folder as this file.
+
+      <div class="gallery-item">
+        <div class="overlay"><span>&#43;</span></div>
+        <img src="your-photo.jpg" alt="Description of the piece" />
+      </div>
+    -->
+    <div class="gallery-grid" id="gallery-grid">
+
+      <!-- Add your images here following the pattern above -->
+
+    </div>
+
+    <!-- Shown when gallery is empty -->
+    <div class="gallery-empty" id="gallery-empty"
+         data-en="Photos coming soon — check back shortly."
+         data-lv="Foto drīzumā — sekojiet aktualitātēm.">
+      Photos coming soon — check back shortly.
+    </div>
+
+    <!-- ── Footer ─────────────────────────────────────── -->
+    <footer>
+      <img src="Logo Text.png" alt="MILA" class="footer-logo" />
+      <p>
+        <span data-en="© 2026 Engraving Studio MILA. All rights reserved."
+              data-lv="© 2026 Engraving Studio MILA. Visas tiesības aizsargātas.">
+          © 2026 Engraving Studio MILA. All rights reserved.
+        </span>
+      </p>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="Gallery image enlarged" />
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const grid  = document.getElementById('gallery-grid');
+    const empty = document.getElementById('gallery-empty');
+    if (grid.querySelectorAll('.gallery-item').length > 0) {
+      empty.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

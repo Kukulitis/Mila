@@ -19,7 +19,7 @@ if (logoWrap && logoImg) {
 }
 
 // ── Language switcher ────────────────────────────────
-function applyLang(lang) {
+function swapText(lang) {
   document.querySelectorAll('[data-en]').forEach(el => {
     el.textContent = lang === 'lv' ? el.dataset.lv : el.dataset.en;
   });
@@ -32,15 +32,38 @@ function applyLang(lang) {
   localStorage.setItem('mila-lang', lang);
 }
 
+function applyLang(lang, animate) {
+  if (!animate) { swapText(lang); return; }
+
+  const wrapper = document.querySelector('.page-wrapper');
+  const nav     = document.querySelector('nav');
+
+  [wrapper, nav].forEach(el => {
+    if (el) { el.style.transition = 'opacity .14s ease'; el.style.opacity = '0'; }
+  });
+
+  setTimeout(() => {
+    swapText(lang);
+    [wrapper, nav].forEach(el => {
+      if (el) { el.style.opacity = '1'; }
+    });
+    setTimeout(() => {
+      [wrapper, nav].forEach(el => {
+        if (el) { el.style.transition = ''; }
+      });
+    }, 160);
+  }, 140);
+}
+
 const langBtn = document.getElementById('lang-toggle');
 if (langBtn) {
   langBtn.addEventListener('click', () => {
-    applyLang((localStorage.getItem('mila-lang') || 'en') === 'en' ? 'lv' : 'en');
+    applyLang((localStorage.getItem('mila-lang') || 'en') === 'en' ? 'lv' : 'en', true);
   });
 }
 
-// Apply saved language on every page load
-applyLang(localStorage.getItem('mila-lang') || 'en');
+// Apply saved language on page load (no animation)
+applyLang(localStorage.getItem('mila-lang') || 'en', false);
 
 // ── Nav shrink on scroll ─────────────────────────────
 const nav = document.querySelector('nav');
@@ -75,6 +98,43 @@ const observer = new IntersectionObserver(
   { threshold: 0.12 }
 );
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Custom select dropdown ───────────────────────────
+function initCustomSelect(container) {
+  const trigger = container.querySelector('.select-trigger');
+  const list    = container.querySelector('.select-list');
+  const valueEl = container.querySelector('.select-value');
+  const hidden  = container.querySelector('input[type="hidden"]');
+  const items   = list.querySelectorAll('li');
+
+  trigger.addEventListener('click', () => {
+    const isOpen = container.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const lang = localStorage.getItem('mila-lang') || 'en';
+      valueEl.textContent = lang === 'lv' ? item.dataset.lv : item.dataset.en;
+      valueEl.dataset.en  = item.dataset.en;
+      valueEl.dataset.lv  = item.dataset.lv;
+      if (hidden) hidden.value = item.dataset.value;
+      items.forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      container.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!container.contains(e.target)) {
+      container.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+document.querySelectorAll('.custom-select').forEach(initCustomSelect);
 
 // ── Contact form ─────────────────────────────────────
 const form    = document.getElementById('contact-form');

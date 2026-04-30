@@ -192,17 +192,42 @@ function initCustomSelect(container) {
 document.querySelectorAll('.custom-select').forEach(initCustomSelect);
 
 // ── Contact form ─────────────────────────────────────
+emailjs.init('jo1m3O9Y8p6aBTEnZ');
+
 const form    = document.getElementById('contact-form');
 const success = document.getElementById('form-success');
+const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+
 if (form) {
   form.addEventListener('submit', e => {
     e.preventDefault();
-    form.style.display = 'none';
-    if (success) {
-      const lang = localStorage.getItem('mila-lang') || 'en';
-      success.textContent = lang === 'lv' ? success.dataset.lv : success.dataset.en;
-      success.style.display = 'block';
+    const lang = localStorage.getItem('mila-lang') || 'en';
+
+    // Loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = lang === 'lv' ? 'Sūta…' : 'Sending…';
     }
+
+    emailjs.sendForm('service_67troma', 'template_jq2wfs5', form)
+      .then(() => {
+        form.style.display = 'none';
+        if (success) {
+          success.textContent = lang === 'lv' ? success.dataset.lv : success.dataset.en;
+          success.style.display = 'block';
+        }
+      })
+      .catch(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = lang === 'lv'
+            ? 'Kļūda — mēģiniet vēlreiz'
+            : 'Error — please try again';
+          setTimeout(() => {
+            submitBtn.textContent = lang === 'lv' ? 'Nosūtīt ziņojumu' : 'Send Message';
+          }, 3000);
+        }
+      });
   });
 }
 
@@ -299,3 +324,20 @@ if (lightbox && lightboxInner) {
     if (!ticking) { requestAnimationFrame(tick); ticking = true; }
   }, { passive: true });
 }());
+
+// ── Copy contact details to clipboard ────────────────
+document.querySelectorAll('.contact-detail[data-copy]').forEach(el => {
+  const textEl = el.querySelector('span:last-child');
+  const original = textEl.textContent;
+
+  el.addEventListener('click', () => {
+    navigator.clipboard.writeText(el.dataset.copy).then(() => {
+      textEl.textContent = 'Copied!';
+      el.classList.add('copied');
+      setTimeout(() => {
+        textEl.textContent = original;
+        el.classList.remove('copied');
+      }, 1800);
+    });
+  });
+});

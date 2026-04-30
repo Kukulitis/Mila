@@ -156,17 +156,17 @@
                data-lv="Vai jums ir projekts prātā vai jautājums par mūsu darbu? Mēs labprāt uzklausīsim. Aizpildiet formu, un mēs sazināsimies pēc iespējas ātrāk.">
               Have a project in mind or a question about our work? We'd love to hear from you. Fill in the form and we'll get back to you as soon as possible.
             </p>
-            <div class="contact-detail">
+            <div class="contact-detail" data-copy="milastudio@email.com">
               <span class="icon">✉</span>
               <span>milastudio@email.com</span>
             </div>
-            <div class="contact-detail">
+            <div class="contact-detail" data-copy="+371 28 739 725">
               <span class="icon">📞</span>
-              <span>+1 (000) 000-0000</span>
+              <span>+371 28 739 725</span>
             </div>
-            <div class="contact-detail">
+            <div class="contact-detail" data-copy="Tukums, Latvia">
               <span class="icon">📍</span>
-              <span>Your City, Country</span>
+              <span>Tukums, Latvia</span>
             </div>
           </div>
 
@@ -174,7 +174,7 @@
             <form id="contact-form" novalidate>
               <div class="form-group">
                 <label for="name" data-en="Your Name" data-lv="Jūsu vārds">Your Name</label>
-                <input type="text" id="name" name="name"
+                <input type="text" id="name" name="from_name"
                        placeholder="Jane Smith"
                        data-en-ph="Jane Smith" data-lv-ph="Jānis Bērziņš" required />
               </div>
@@ -235,6 +235,7 @@
 
   </div><!-- /page-wrapper -->
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

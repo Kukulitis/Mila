@@ -346,6 +346,57 @@ section {
 .contact-detail {
   display: flex; align-items: flex-start; gap: .75rem;
   margin-bottom: .85rem; font-size: 1rem; color: var(--brown2);
+  cursor: default;
+}
+.contact-detail[data-copy] {
+  cursor: pointer;
+  transition: color .2s, opacity .2s;
+  position: relative;
+  z-index: 1;
+}
+.contact-detail[data-copy]:hover {
+  z-index: 20;
+}
+.contact-detail[data-copy]:hover { color: var(--brown); }
+.contact-detail[data-copy].copied { opacity: .5; }
+.contact-detail[data-copy]::after {
+  content: 'Click to copy';
+  position: absolute;
+  left: 0; top: calc(100% + 8px);
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #f7f2ea;
+  background: #3b2314;
+  padding: .3rem .65rem;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+.contact-detail[data-copy]::before {
+  content: '';
+  position: absolute;
+  left: 12px; top: calc(100% + 2px);
+  border: 5px solid transparent;
+  border-bottom-color: #3b2314;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+.contact-detail[data-copy]:hover::after,
+.contact-detail[data-copy]:hover::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+.contact-detail[data-copy].copied::after,
+.contact-detail[data-copy].copied::before {
+  opacity: 0;
 }
 .contact-detail .icon { color: var(--red); font-size: 1.1rem; }
 

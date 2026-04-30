@@ -84,24 +84,25 @@ function swapText(lang) {
 function applyLang(lang, animate) {
   if (!animate) { swapText(lang); return; }
 
-  const wrapper = document.querySelector('.page-wrapper');
-  const nav     = document.querySelector('nav');
+  const els = document.querySelectorAll(
+    '[data-en], [data-en-ph], #lang-toggle'
+  );
 
-  [wrapper, nav].forEach(el => {
-    if (el) { el.style.transition = 'opacity .14s ease'; el.style.opacity = '0'; }
+  els.forEach(el => {
+    el.style.transition = 'opacity .15s ease';
+    el.style.opacity    = '0';
   });
 
   setTimeout(() => {
     swapText(lang);
-    [wrapper, nav].forEach(el => {
-      if (el) { el.style.opacity = '1'; }
+    els.forEach(el => {
+      el.style.transition = 'opacity .2s ease';
+      el.style.opacity    = '1';
     });
     setTimeout(() => {
-      [wrapper, nav].forEach(el => {
-        if (el) { el.style.transition = ''; }
-      });
-    }, 160);
-  }, 140);
+      els.forEach(el => { el.style.transition = ''; el.style.opacity = ''; });
+    }, 220);
+  }, 160);
 }
 
 const langBtn = document.getElementById('lang-toggle');
@@ -279,7 +280,6 @@ if (lightbox && lightboxInner) {
   const tracks   = document.querySelectorAll('.gallery-track[data-speed]');
   if (!tracks.length) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia('(max-width: 768px)').matches) return;
 
   let ticking = false;
   function tick() {

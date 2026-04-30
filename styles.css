@@ -320,6 +320,9 @@ section {
   background: var(--white);
   text-align: center;
   transition: box-shadow .3s, transform .3s;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .service-card:hover {
   transform: translateY(-4px);
@@ -651,15 +654,6 @@ footer .footer-logo { margin: 0 auto 1rem; width: 60px; filter: invert(1) bright
   .about { display: flex; flex-direction: column; gap: 0; align-items: unset; }
   .about-img-wrap { position: relative; width: 100%; height: 58vw; min-height: 240px; max-height: 420px; flex-shrink: 0; }
   .about-img-wrap::before { display: none; }
-  .about-img-wrap::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 50%;
-    background: linear-gradient(to bottom, transparent, var(--cream));
-    pointer-events: none;
-    z-index: 2;
-  }
   .about-photo { width: 100%; height: 100%; aspect-ratio: unset; object-fit: cover; border-radius: 0; display: block; }
   .about-text { padding: 1.5rem clamp(1.5rem, 6vw, 2.5rem) 2.5rem; }
 

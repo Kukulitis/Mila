@@ -201,8 +201,9 @@ if (form) {
 }
 
 // ── Lightbox ─────────────────────────────────────────
-const lightbox      = document.getElementById('lightbox');
-const lightboxInner = document.getElementById('lightbox-inner');
+const lightbox         = document.getElementById('lightbox');
+const lightboxInner    = document.getElementById('lightbox-inner');
+const lightboxDownload = document.getElementById('lightbox-download');
 
 if (lightbox && lightboxInner) {
   document.querySelectorAll('.gallery-item').forEach(item => {
@@ -215,10 +216,16 @@ if (lightbox && lightboxInner) {
         const el = document.createElement('img');
         el.src = img.src; el.alt = img.alt || '';
         lightboxInner.appendChild(el);
+        if (lightboxDownload) {
+          lightboxDownload._imgSrc  = img.src;
+          lightboxDownload._imgName = img.alt || 'mila-engraving';
+          lightboxDownload.classList.remove('hidden');
+        }
       } else if (ph) {
         const clone = ph.cloneNode(true);
-        clone.style.aspectRatio = '';   // let CSS control size in lightbox
+        clone.style.aspectRatio = '';
         lightboxInner.appendChild(clone);
+        if (lightboxDownload) lightboxDownload.classList.add('hidden');
         // Re-apply language to cloned element
         const lang = localStorage.getItem('mila-lang') || 'en';
         clone.querySelectorAll('[data-en]').forEach(el => {
@@ -230,6 +237,28 @@ if (lightbox && lightboxInner) {
       document.body.style.overflow = 'hidden';
     });
   });
+
+  if (lightboxDownload) {
+    lightboxDownload.addEventListener('click', e => {
+      e.preventDefault();
+      const src  = lightboxDownload._imgSrc;
+      const name = lightboxDownload._imgName;
+      if (!src) return;
+      fetch(src)
+        .then(r => r.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          const a   = document.createElement('a');
+          a.href     = url;
+          a.download = name;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 100);
+        })
+        .catch(() => window.open(src, '_blank'));
+    });
+  }
 
   const closeLightbox = () => {
     lightbox.classList.remove('open');

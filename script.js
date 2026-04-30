@@ -1,20 +1,69 @@
-// Hero logo 3D tilt on mouse move
-const logoWrap = document.getElementById('hero-logo-wrap');
-const logoImg  = document.getElementById('hero-logo');
-if (logoWrap && logoImg) {
+// ── Hero logo: tilt + coin flip ──────────────────────
+const logoWrap    = document.getElementById('hero-logo-wrap');
+const logoFlipper = document.getElementById('logo-flipper');
+const logoQuoteEl = document.getElementById('logo-quote');
+
+const quotes = [
+  '"Every mark tells a story."',
+  '"Crafted with care, kept forever."',
+  '"Details make the difference."',
+  '"Your story, engraved."',
+  '"A gift that lasts a lifetime."',
+  '"Precision is the finest art."',
+];
+let quoteIndex = 0;
+let isFlipped   = false;
+let flipTimer   = null;
+
+if (logoWrap && logoFlipper) {
+  // Tilt on mouse move
   logoWrap.addEventListener('mousemove', e => {
-    const rect  = logoWrap.getBoundingClientRect();
-    const dx    = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
-    const dy    = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
-    logoImg.style.transform = `rotateX(${dy * -18}deg) rotateY(${dx * 18}deg) scale(1.06)`;
+    if (isFlipped) return;
+    const rect = logoWrap.getBoundingClientRect();
+    const dx   = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+    const dy   = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+    logoFlipper.style.transition = 'transform .08s linear';
+    logoFlipper.style.transform  = `rotateX(${dy * -16}deg) rotateY(${dx * 16}deg) scale(1.05)`;
   });
-  logoWrap.addEventListener('mouseenter', () => {
-    logoImg.style.transition = 'transform .08s linear, filter .3s';
-  });
+
   logoWrap.addEventListener('mouseleave', () => {
-    logoImg.style.transition = 'transform .6s cubic-bezier(.34,1.56,.64,1), filter .3s';
-    logoImg.style.transform  = 'rotateX(0deg) rotateY(0deg) scale(1)';
-    setTimeout(() => { logoImg.style.transition = ''; }, 650);
+    if (isFlipped) return;
+    logoFlipper.style.transition = 'transform .55s cubic-bezier(.34,1.56,.64,1)';
+    logoFlipper.style.transform  = '';
+    setTimeout(() => { if (!isFlipped) logoFlipper.style.transition = ''; }, 580);
+  });
+
+  // Coin flip on click
+  logoWrap.addEventListener('click', () => {
+    if (isFlipped) return;
+    isFlipped = true;
+    clearTimeout(flipTimer);
+
+    // Set next quote
+    if (logoQuoteEl) {
+      logoQuoteEl.textContent = quotes[quoteIndex % quotes.length];
+      quoteIndex++;
+    }
+
+    // Smoothly reset any tilt, then flip
+    logoFlipper.style.transition = 'transform .18s ease';
+    logoFlipper.style.transform  = 'scale(1)';
+
+    setTimeout(() => {
+      logoFlipper.style.transition = 'transform .7s cubic-bezier(.4,0,.2,1)';
+      logoFlipper.style.transform  = 'rotateY(180deg)';
+    }, 160);
+
+    // Flip back after 3.5 s
+    flipTimer = setTimeout(() => {
+      logoFlipper.style.transition = 'transform .6s cubic-bezier(.4,0,.2,1)';
+      logoFlipper.style.transform  = 'rotateY(0deg)';
+      setTimeout(() => {
+        logoFlipper.style.transition = '';
+        logoFlipper.style.transform  = '';
+        isFlipped = false;
+      }, 620);
+    }, 3600);
   });
 }
 
@@ -152,16 +201,36 @@ if (form) {
 }
 
 // ── Lightbox ─────────────────────────────────────────
-const lightbox    = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-if (lightbox) {
-  document.querySelectorAll('.gallery-item img').forEach(img => {
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
+const lightbox      = document.getElementById('lightbox');
+const lightboxInner = document.getElementById('lightbox-inner');
+
+if (lightbox && lightboxInner) {
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      lightboxInner.innerHTML = '';
+      const img = item.querySelector('img');
+      const ph  = item.querySelector('.g-ph');
+
+      if (img) {
+        const el = document.createElement('img');
+        el.src = img.src; el.alt = img.alt || '';
+        lightboxInner.appendChild(el);
+      } else if (ph) {
+        const clone = ph.cloneNode(true);
+        clone.style.aspectRatio = '';   // let CSS control size in lightbox
+        lightboxInner.appendChild(clone);
+        // Re-apply language to cloned element
+        const lang = localStorage.getItem('mila-lang') || 'en';
+        clone.querySelectorAll('[data-en]').forEach(el => {
+          el.textContent = lang === 'lv' ? el.dataset.lv : el.dataset.en;
+        });
+      }
+
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     });
   });
+
   const closeLightbox = () => {
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
@@ -170,3 +239,29 @@ if (lightbox) {
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 }
+
+// ── Gallery parallax ─────────────────────────────────
+(function () {
+  const tracks   = document.querySelectorAll('.gallery-track[data-speed]');
+  if (!tracks.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(max-width: 768px)').matches) return;
+
+  let ticking = false;
+  function tick() {
+    const vh = window.innerHeight;
+    tracks.forEach(track => {
+      const r = track.getBoundingClientRect();
+      if (r.top < vh + 120 && r.bottom > -120) {
+        const speed  = parseFloat(track.dataset.speed);
+        const dist   = r.top + r.height / 2 - vh / 2;
+        track.style.transform = `translateY(${dist * -speed}px)`;
+      }
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(tick); ticking = true; }
+  }, { passive: true });
+}());

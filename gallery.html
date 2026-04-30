@@ -45,28 +45,132 @@
       </p>
     </div>
 
-    <!-- ── Gallery Grid ───────────────────────────────── -->
     <!--
-      TO ADD PHOTOS:
-      Copy the block below and replace "your-photo.jpg" with your image filename.
-      Place your images in the same folder as this file.
-
-      <div class="gallery-item">
-        <div class="overlay"><span>&#43;</span></div>
-        <img src="your-photo.jpg" alt="Description of the piece" />
-      </div>
+      TO ADD REAL PHOTOS: inside any .gallery-item, replace the <div class="g-ph"> with:
+      <img src="your-photo.jpg" alt="Description of the piece" />
     -->
     <div class="gallery-grid" id="gallery-grid">
 
-      <!-- Add your images here following the pattern above -->
+      <div class="gallery-track" data-speed="0.06">
+        <div class="gallery-item" style="--rot:-2.1deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#e8ddc8;aspect-ratio:4/3">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Engraved wooden board" data-lv="Gravēts koka dēlis">Engraved wooden board</span>
+          </div>
+        </div>
+      </div>
 
-    </div>
+      <div class="gallery-track" data-speed="0.09">
+        <div class="gallery-item" style="--rot:1.4deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#d4c7b0;aspect-ratio:3/4">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Custom glassware" data-lv="Gravēts stikls">Custom glassware</span>
+          </div>
+        </div>
+      </div>
 
-    <!-- Shown when gallery is empty -->
-    <div class="gallery-empty" id="gallery-empty"
-         data-en="Photos coming soon — check back shortly."
-         data-lv="Foto drīzumā — sekojiet aktualitātēm.">
-      Photos coming soon — check back shortly.
+      <div class="gallery-track" data-speed="0.04">
+        <div class="gallery-item" style="--rot:-0.9deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#eae0cc;aspect-ratio:1/1">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Jewellery piece" data-lv="Juvelierizstrādājums">Jewellery piece</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.07">
+        <div class="gallery-item" style="--rot:2.3deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#ccc0a8;aspect-ratio:5/4">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Wedding gift" data-lv="Kāzu dāvana">Wedding gift</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.05">
+        <div class="gallery-item" style="--rot:-1.6deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#ddd0bc;aspect-ratio:4/3">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Corporate award" data-lv="Korporatīva balva">Corporate award</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.10">
+        <div class="gallery-item" style="--rot:0.8deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#e5dac6;aspect-ratio:2/3">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Keepsake box" data-lv="Piemiņas kaste">Keepsake box</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.06">
+        <div class="gallery-item" style="--rot:-2.4deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#d8ccb5;aspect-ratio:4/3">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Photo frame" data-lv="Foto rāmis">Photo frame</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.04">
+        <div class="gallery-item" style="--rot:1.9deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#ede5d2;aspect-ratio:3/4">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Wine decanter" data-lv="Vīna karafē">Wine decanter</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.08">
+        <div class="gallery-item" style="--rot:-1.1deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#c9bba3;aspect-ratio:1/1">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Ring engraving" data-lv="Gredzena gravējums">Ring engraving</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.05">
+        <div class="gallery-item" style="--rot:2.7deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#dbd0bb;aspect-ratio:5/3">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Birthday gift" data-lv="Dzimšanas dienas dāvana">Birthday gift</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.07">
+        <div class="gallery-item" style="--rot:-1.4deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#e7dcca;aspect-ratio:4/3">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Memorial piece" data-lv="Piemiņas priekšmets">Memorial piece</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-track" data-speed="0.03">
+        <div class="gallery-item" style="--rot:1.0deg">
+          <div class="overlay"><span>+</span></div>
+          <div class="g-ph" style="background:#d2c5ae;aspect-ratio:3/4">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3l11 11-11 11L3 14z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            <span data-en="Custom box" data-lv="Individuāla kaste">Custom box</span>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- ── Footer ─────────────────────────────────────── -->
@@ -85,16 +189,9 @@
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox">
     <button id="lightbox-close" class="lightbox-close" aria-label="Close">&times;</button>
-    <img id="lightbox-img" src="" alt="Gallery image enlarged" />
+    <div id="lightbox-inner" class="lightbox-inner"></div>
   </div>
 
   <script src="script.js"></script>
-  <script>
-    const grid  = document.getElementById('gallery-grid');
-    const empty = document.getElementById('gallery-empty');
-    if (grid.querySelectorAll('.gallery-item').length > 0) {
-      empty.style.display = 'none';
-    }
-  </script>
 </body>
 </html>

@@ -192,10 +192,12 @@ function initCustomSelect(container) {
 document.querySelectorAll('.custom-select').forEach(initCustomSelect);
 
 // ── Contact form ─────────────────────────────────────
-emailjs.init('jo1m3O9Y8p6aBTEnZ');
+if (typeof emailjs !== 'undefined') {
+  emailjs.init({ publicKey: 'jo1m3O9Y8p6aBTEnZ' });
+}
 
-const form    = document.getElementById('contact-form');
-const success = document.getElementById('form-success');
+const form      = document.getElementById('contact-form');
+const success   = document.getElementById('form-success');
 const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
 if (form) {
@@ -209,15 +211,28 @@ if (form) {
       submitBtn.textContent = lang === 'lv' ? 'Sūta…' : 'Sending…';
     }
 
-    emailjs.sendForm('service_67troma', 'template_jq2wfs5', form)
-      .then(() => {
+    const fd = new FormData(form);
+    const params = {
+      from_name:  fd.get('from_name')  || '',
+      from_email: fd.get('from_email') || '',
+      email:      fd.get('from_email') || '',
+      phone:      fd.get('phone')      || '—',
+      service:    fd.get('service')    || '—',
+      message:    fd.get('message')    || '',
+    };
+
+    Promise.all([
+      emailjs.send('service_67troma', 'template_g99doym', params),
+      emailjs.send('service_67troma', 'template_jq2wfs5', params),
+    ]).then(() => {
         form.style.display = 'none';
         if (success) {
           success.textContent = lang === 'lv' ? success.dataset.lv : success.dataset.en;
           success.style.display = 'block';
         }
       })
-      .catch(() => {
+      .catch(err => {
+        console.error('EmailJS error:', err);
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = lang === 'lv'

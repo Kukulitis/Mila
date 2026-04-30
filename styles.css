@@ -446,8 +446,8 @@ form { display: flex; flex-direction: column; gap: 1.2rem; }
 
 .gallery-grid {
   padding: 2rem clamp(1.5rem, 5vw, 5rem) var(--gap);
-  columns: 3 240px;
-  gap: 1.4rem;
+  columns: 4 180px;
+  gap: 1.2rem;
 }
 
 /* Parallax outer wrapper — only transform:translateY applied by JS */
@@ -463,14 +463,28 @@ form { display: flex; flex-direction: column; gap: 1.2rem; }
   cursor: pointer;
   position: relative;
   transform: rotate(var(--rot, 0deg));
-  transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
-  box-shadow: 0 3px 14px rgba(59,35,20,.10);
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .35s;
+  box-shadow:
+    0 1px 2px  rgba(59,35,20,.08),
+    0 4px 10px rgba(59,35,20,.12),
+    0 12px 28px rgba(59,35,20,.13),
+    0 24px 48px rgba(59,35,20,.07);
+  outline: 1px solid rgba(255,255,255,.55);
+  outline-offset: -1px;
 }
 .gallery-item:hover {
   transform: rotate(0deg) scale(1.04);
-  box-shadow: 0 10px 32px rgba(59,35,20,.18);
+  box-shadow:
+    0 2px 4px  rgba(59,35,20,.10),
+    0 8px 20px rgba(59,35,20,.18),
+    0 22px 50px rgba(59,35,20,.20),
+    0 40px 72px rgba(59,35,20,.10);
 }
-.gallery-item img { width: 100%; display: block; }
+.gallery-item img {
+  width: 100%;
+  display: block;
+  filter: contrast(1.04) saturate(1.06);
+}
 
 /* Placeholder tile */
 .g-ph {
@@ -650,12 +664,13 @@ footer .footer-logo { margin: 0 auto 1rem; width: 60px; filter: invert(1) bright
   .hero { padding: 6rem 1.25rem 4.5rem; }
   .hero h1 { letter-spacing: .08em; font-size: 1rem; }
   .hero p  { font-size: .95rem; }
+  .scroll-hint { display: none; }
 
   /* Sections */
   section { padding: var(--gap) 1.25rem; }
 
   /* Services — force 1 col on very small phones */
-  .services-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .services-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
   .service-card  { padding: 1.5rem 1.25rem; }
 
   /* Gallery */

@@ -1,3 +1,94 @@
+// ── Password gate ────────────────────────────────────
+(function () {
+  const KEY  = 'mila-auth';
+  const PASS = 'Zabaki';
+
+  if (localStorage.getItem(KEY) === '1') return; // already unlocked
+
+  const strings = {
+    en: {
+      badge:       'Under Development',
+      heading:     'We\'re Working on Something Special',
+      sub:         'Engraving Studio MILA is currently under construction. Check back soon — something beautiful is on the way.',
+      label:       'Enter password to preview',
+      placeholder: 'Password',
+      error:       'Incorrect password.',
+    },
+    lv: {
+      badge:       'Izstrādes stadijā',
+      heading:     'Mēs strādājam pie kaut kā īpaša',
+      sub:         'Gravēšanas studija MILA pašlaik tiek veidota. Drīzumā atgriezieties — kaut kas skaists ir ceļā.',
+      label:       'Ievadiet paroli priekšskatījumam',
+      placeholder: 'Parole',
+      error:       'Nepareiza parole.',
+    },
+  };
+
+  let gateLang = localStorage.getItem('mila-lang') || 'en';
+
+  // Inject gate overlay
+  const gate = document.createElement('div');
+  gate.id = 'pw-gate';
+  gate.innerHTML = `
+    <button id="pw-lang" class="pw-lang-btn"></button>
+    <div class="pw-box">
+      <img src="Logo Circle.png" alt="MILA" class="pw-logo" />
+      <span id="pw-badge" class="pw-badge"></span>
+      <h1 id="pw-heading" class="pw-heading"></h1>
+      <p  id="pw-sub"     class="pw-sub"></p>
+      <p  id="pw-label"   class="pw-label"></p>
+      <div class="pw-field-wrap">
+        <input id="pw-input" type="password" autocomplete="current-password" />
+        <button id="pw-submit">→</button>
+      </div>
+      <p id="pw-error" class="pw-error"></p>
+    </div>
+  `;
+  document.body.appendChild(gate);
+  document.body.classList.add('pw-locked');
+
+  function renderGateLang() {
+    const s = strings[gateLang];
+    document.getElementById('pw-lang').textContent    = gateLang === 'en' ? 'LV' : 'EN';
+    document.getElementById('pw-badge').textContent   = s.badge;
+    document.getElementById('pw-heading').textContent = s.heading;
+    document.getElementById('pw-sub').textContent     = s.sub;
+    document.getElementById('pw-label').textContent   = s.label;
+    document.getElementById('pw-input').placeholder   = s.placeholder;
+    const err = document.getElementById('pw-error');
+    if (err.textContent) err.textContent = s.error;
+  }
+  renderGateLang();
+
+  document.getElementById('pw-lang').addEventListener('click', () => {
+    gateLang = gateLang === 'en' ? 'lv' : 'en';
+    renderGateLang();
+  });
+
+  const input = document.getElementById('pw-input');
+  const error = document.getElementById('pw-error');
+
+  function attempt() {
+    if (input.value === PASS) {
+      localStorage.setItem(KEY, '1');
+      gate.classList.add('pw-fade-out');
+      setTimeout(() => {
+        gate.remove();
+        document.body.classList.remove('pw-locked');
+      }, 500);
+    } else {
+      error.textContent = strings[gateLang].error;
+      input.value = '';
+      input.classList.add('pw-shake');
+      setTimeout(() => input.classList.remove('pw-shake'), 500);
+    }
+  }
+
+  document.getElementById('pw-submit').addEventListener('click', attempt);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+  setTimeout(() => input.focus(), 100);
+}());
+
 // ── Hero logo: tilt + coin flip ──────────────────────
 const logoWrap    = document.getElementById('hero-logo-wrap');
 const logoFlipper = document.getElementById('logo-flipper');
@@ -320,6 +411,7 @@ if (lightbox && lightboxInner) {
   const tracks   = document.querySelectorAll('.gallery-track[data-speed]');
   if (!tracks.length) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(max-width: 768px)').matches) return;
 
   let ticking = false;
   function tick() {

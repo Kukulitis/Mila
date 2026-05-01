@@ -340,6 +340,24 @@ if (lightbox && lightboxInner) {
   }, { passive: true });
 }());
 
+// ── Service card accordion (mobile) ──────────────────
+(function () {
+  const cards = document.querySelectorAll('.service-card');
+  if (!cards.length) return;
+
+  function initAccordion() {
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const isOpen = card.classList.contains('open');
+        cards.forEach(c => c.classList.remove('open'));
+        if (!isOpen) card.classList.add('open');
+      });
+    });
+  }
+  initAccordion();
+}());
+
 // ── Copy contact details to clipboard ────────────────
 document.querySelectorAll('.contact-detail[data-copy]').forEach(el => {
   const textEl = el.querySelector('span:last-child');

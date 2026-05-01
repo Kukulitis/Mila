@@ -21,11 +21,24 @@
     </a>
     <div class="nav-right">
       <ul>
-        <li><a href="#about"    data-en="About"    data-lv="Par mums">About</a></li>
-        <li><a href="services.html" data-en="Services" data-lv="Pakalpojumi">Services</a></li>
-        <li><a href="gallery.html" data-en="Gallery" data-lv="Galerija">Gallery</a></li>
+        <li><a href="#about"       data-en="About"    data-lv="Par mums"    data-ru="О нас">About</a></li>
+        <li><a href="services.html" data-en="Services" data-lv="Pakalpojumi" data-ru="Услуги">Services</a></li>
+        <li><a href="gallery.html"  data-en="Gallery"  data-lv="Galerija"    data-ru="Галерея">Gallery</a></li>
       </ul>
-      <button class="lang-toggle" id="lang-toggle">LV</button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <button class="lang-trigger" id="lang-trigger">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-code">EN</span>
+          <svg class="lang-chevron" width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="lang-list">
+          <li data-lang="en"><span>🇬🇧</span> English</li>
+          <li data-lang="lv"><span>🇱🇻</span> Latviešu</li>
+          <li data-lang="ru"><span>🇷🇺</span> Русский</li>
+        </ul>
+      </div>
       <div class="nav-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </div>
@@ -48,16 +61,17 @@
       </div>
       <h1>Engraving Studio MILA</h1>
       <p data-en="Personalised engravings crafted with precision and care — for gifts, keepsakes, and everything in between."
-         data-lv="Personalizēti gravējumi, izgatavoti ar precizitāti un rūpību — dāvanām, piemiņas lietām un visam pārējam.">
+         data-lv="Personalizēti gravējumi, izgatavoti ar precizitāti un rūpību — dāvanām, piemiņas lietām un visam pārējam."
+         data-ru="Персонализированные гравюры, созданные с точностью и заботой — для подарков, сувениров и всего остального.">
         Personalised engravings crafted with precision and care — for gifts, keepsakes, and everything in between.
       </p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-red"
-           data-en="Get in Touch" data-lv="Sazinies">Get in Touch</a>
+           data-en="Get in Touch" data-lv="Sazinies" data-ru="Связаться">Get in Touch</a>
       </div>
       <div class="scroll-hint">
         <div class="line"></div>
-        <span data-en="Scroll" data-lv="Ritināt">Scroll</span>
+        <span data-en="Scroll" data-lv="Ritināt" data-ru="Прокрутить">Scroll</span>
       </div>
     </section>
 
@@ -65,22 +79,27 @@
     <section id="about">
       <div class="about reveal">
         <div class="about-text">
-          <p class="section-label" data-en="About Us" data-lv="Par mums">About Us</p>
-          <h2 class="section-title" data-en="Every Mark Tells a Story" data-lv="Katrs Gravējums Stāsta Stāstu">Every Mark Tells a Story</h2>
+          <p class="section-label" data-en="About Us" data-lv="Par mums" data-ru="О нас">About Us</p>
+          <h2 class="section-title"
+              data-en="Every Mark Tells a Story"
+              data-lv="Katrs Gravējums Stāsta Stāstu"
+              data-ru="Каждый знак рассказывает историю">Every Mark Tells a Story</h2>
           <div class="divider"></div>
           <p data-en="At Engraving Studio MILA we transform ordinary objects into treasured keepsakes. Each piece is engraved by hand with attention to detail and a deep appreciation for craftsmanship."
-             data-lv="Gravēšanas studijā MILA mēs pārvēršam parastus priekšmetus par dārgiem piemiņas priekšmetiem. Katrs darbs tiek gravēts ar rūpību un dziļu cieņu pret amatniecību.">
+             data-lv="Gravēšanas studijā MILA mēs pārvēršam parastus priekšmetus par dārgiem piemiņas priekšmetiem. Katrs darbs tiek gravēts ar rūpību un dziļu cieņu pret amatniecību."
+             data-ru="В гравировальной студии MILA мы превращаем обычные предметы в дорогие памятные вещи. Каждое изделие гравируется вручную с вниманием к деталям и глубоким уважением к мастерству.">
             At Engraving Studio MILA we transform ordinary objects into treasured keepsakes. Each piece is engraved by hand with attention to detail and a deep appreciation for craftsmanship.
           </p>
           <p data-en="Whether it's a wedding gift, a corporate award, or a personal memento, we work closely with every client to bring their vision to life."
-             data-lv="Vai tas ir kāzu dāvana, korporatīva balva vai personīgs piemiņas priekšmets — mēs cieši sadarbojamies ar katru klientu, lai īstenotu viņu vīziju.">
+             data-lv="Vai tas ir kāzu dāvana, korporatīva balva vai personīgs piemiņas priekšmets — mēs cieši sadarbojamies ar katru klientu, lai īstenotu viņu vīziju."
+             data-ru="Будь то свадебный подарок, корпоративная награда или личный сувенир — мы тесно сотрудничаем с каждым клиентом, чтобы воплотить их видение в жизнь.">
             Whether it's a wedding gift, a corporate award, or a personal memento, we work closely with every client to bring their vision to life.
           </p>
           <a href="#contact" class="btn" style="margin-top:1.5rem;"
-             data-en="Request a Quote" data-lv="Pieprasīt cenu">Request a Quote</a>
+             data-en="Request a Quote" data-lv="Pieprasīt cenu" data-ru="Запросить цену">Request a Quote</a>
         </div>
         <div class="about-img-wrap">
-         <img src="your-engraver-photo.jpg" alt="Laser engraver at work" class="about-photo" />
+          <img src="your-engraver-photo.jpg" alt="Laser engraver at work" class="about-photo" />
         </div>
       </div>
     </section>
@@ -88,45 +107,53 @@
     <!-- ── Services ───────────────────────────────────── -->
     <section id="services" style="background: var(--sand); max-width:100%; padding: var(--gap) clamp(1.5rem,8vw,8rem);">
       <div style="max-width:1100px; margin:0 auto;">
-        <p class="section-label reveal" data-en="What We Do" data-lv="Ko mēs darām">What We Do</p>
-        <h2 class="section-title reveal" data-en="Our Services" data-lv="Mūsu pakalpojumi">Our Services</h2>
+        <p class="section-label reveal" data-en="What We Do" data-lv="Ko mēs darām" data-ru="Что мы делаем">What We Do</p>
+        <h2 class="section-title reveal" data-en="Our Services" data-lv="Mūsu pakalpojumi" data-ru="Наши услуги">Our Services</h2>
         <div class="divider reveal"></div>
         <div class="services-grid">
           <div class="service-card reveal">
             <div class="icon">🪵</div>
-            <h3 data-en="Wood Engraving" data-lv="Koka gravēšana">Wood Engraving</h3>
+            <h3 data-en="Wood Engraving" data-lv="Koka gravēšana" data-ru="Гравировка по дереву">Wood Engraving</h3>
             <p data-en="Custom text and designs engraved onto cutting boards, boxes, frames, and more."
-               data-lv="Teksts un dizaini gravēti uz dēļiem, kastēm, rāmjiem un citiem priekšmetiem.">
+               data-lv="Teksts un dizaini gravēti uz dēļiem, kastēm, rāmjiem un citiem priekšmetiem."
+               data-ru="Индивидуальный текст и дизайны, гравированные на досках, коробках, рамках и многом другом.">
               Custom text and designs engraved onto cutting boards, boxes, frames, and more.
             </p>
-            <a href="services.html" class="svc-link" data-en="Learn More" data-lv="Uzzināt vairāk">Learn More</a>
+            <a href="services.html" class="svc-link"
+               data-en="Learn More" data-lv="Uzzināt vairāk" data-ru="Подробнее">Learn More</a>
           </div>
           <div class="service-card reveal">
             <div class="icon">🥂</div>
-            <h3 data-en="Glassware" data-lv="Stikla izstrādājumi">Glassware</h3>
+            <h3 data-en="Glassware" data-lv="Stikla izstrādājumi" data-ru="Стеклянные изделия">Glassware</h3>
             <p data-en="Elegant personalisation on glasses, decanters, and crystal pieces."
-               data-lv="Eleganta personalizācija uz glāzēm, dekanteriem un kristāla priekšmetiem.">
+               data-lv="Eleganta personalizācija uz glāzēm, dekanteriem un kristāla priekšmetiem."
+               data-ru="Элегантная персонализация бокалов, декантеров и хрустальных изделий.">
               Elegant personalisation on glasses, decanters, and crystal pieces.
             </p>
-            <a href="services.html" class="svc-link" data-en="Learn More" data-lv="Uzzināt vairāk">Learn More</a>
+            <a href="services.html" class="svc-link"
+               data-en="Learn More" data-lv="Uzzināt vairāk" data-ru="Подробнее">Learn More</a>
           </div>
           <div class="service-card reveal">
             <div class="icon">🧥</div>
-            <h3 data-en="Custom Apparel" data-lv="Personalizēts apģērbs">Custom Apparel</h3>
+            <h3 data-en="Custom Apparel" data-lv="Personalizēts apģērbs" data-ru="Одежда на заказ">Custom Apparel</h3>
             <p data-en="Personalised clothing — embroidered hoodies, printed jackets, custom shirts, and more."
-               data-lv="Personalizēts apģērbs — izšūti džemperi, apdrukātas jakas, krekli un daudz kas cits.">
+               data-lv="Personalizēts apģērbs — izšūti džemperi, apdrukātas jakas, krekli un daudz kas cits."
+               data-ru="Персонализированная одежда — вышитые худи, печатные куртки, индивидуальные рубашки и многое другое.">
               Personalised clothing — embroidered hoodies, printed jackets, custom shirts, and more.
             </p>
-            <a href="services.html" class="svc-link" data-en="Learn More" data-lv="Uzzināt vairāk">Learn More</a>
+            <a href="services.html" class="svc-link"
+               data-en="Learn More" data-lv="Uzzināt vairāk" data-ru="Подробнее">Learn More</a>
           </div>
           <div class="service-card reveal">
             <div class="icon">🎁</div>
-            <h3 data-en="Custom Gifts" data-lv="Individuālas dāvanas">Custom Gifts</h3>
+            <h3 data-en="Custom Gifts" data-lv="Individuālas dāvanas" data-ru="Индивидуальные подарки">Custom Gifts</h3>
             <p data-en="Have something specific in mind? Let's discuss and create together."
-               data-lv="Ir konkrēta ideja? Apspriedīsimies un radīsim to kopā.">
+               data-lv="Ir konkrēta ideja? Apspriedīsimies un radīsim to kopā."
+               data-ru="Есть конкретная идея? Давайте обсудим и создадим вместе.">
               Have something specific in mind? Let's discuss and create together.
             </p>
-            <a href="services.html" class="svc-link" data-en="Learn More" data-lv="Uzzināt vairāk">Learn More</a>
+            <a href="services.html" class="svc-link"
+               data-en="Learn More" data-lv="Uzzināt vairāk" data-ru="Подробнее">Learn More</a>
           </div>
         </div>
       </div>
@@ -134,29 +161,31 @@
 
     <!-- ── Gallery teaser ─────────────────────────────── -->
     <section style="text-align:center; padding: var(--gap) 2rem;">
-      <p class="section-label reveal" data-en="Our Work" data-lv="Mūsu darbi">Our Work</p>
-      <h2 class="section-title reveal" data-en="See the Craft" data-lv="Apskatīt darbus">See the Craft</h2>
+      <p class="section-label reveal" data-en="Our Work" data-lv="Mūsu darbi" data-ru="Наши работы">Our Work</p>
+      <h2 class="section-title reveal" data-en="See the Craft" data-lv="Apskatīt darbus" data-ru="Посмотреть работы">See the Craft</h2>
       <div class="divider reveal" style="margin: 0 auto 2rem;"></div>
       <p class="reveal" style="font-size:1.05rem; color:var(--brown2); font-style:italic; margin-bottom:2rem;"
          data-en="Browse our gallery for inspiration and past projects."
-         data-lv="Pārlūkojiet mūsu galeriju iedvesmai un iepriekšējiem projektiem.">
+         data-lv="Pārlūkojiet mūsu galeriju iedvesmai un iepriekšējiem projektiem."
+         data-ru="Просматривайте нашу галерею для вдохновения и примеров работ.">
         Browse our gallery for inspiration and past projects.
       </p>
       <a href="gallery.html" class="btn btn-red reveal"
-         data-en="View Gallery" data-lv="Skatīt galeriju">View Gallery</a>
+         data-en="View Gallery" data-lv="Skatīt galeriju" data-ru="Смотреть галерею">View Gallery</a>
     </section>
 
     <!-- ── Contact ────────────────────────────────────── -->
     <section id="contact" style="background: var(--sand); max-width:100%; padding: var(--gap) clamp(1.5rem,8vw,8rem);">
       <div style="max-width:1100px; margin:0 auto;">
-        <p class="section-label reveal" data-en="Get in Touch" data-lv="Sazinies">Get in Touch</p>
-        <h2 class="section-title reveal" data-en="Contact Us" data-lv="Kontakti">Contact Us</h2>
+        <p class="section-label reveal" data-en="Get in Touch" data-lv="Sazinies" data-ru="Связаться">Get in Touch</p>
+        <h2 class="section-title reveal" data-en="Contact Us" data-lv="Kontakti" data-ru="Контакты">Contact Us</h2>
         <div class="divider reveal"></div>
 
         <div class="contact-wrap">
           <div class="contact-info reveal">
             <p data-en="Have a project in mind or a question about our work? We'd love to hear from you. Fill in the form and we'll get back to you as soon as possible."
-               data-lv="Vai jums ir projekts prātā vai jautājums par mūsu darbu? Mēs labprāt uzklausīsim. Aizpildiet formu, un mēs sazināsimies pēc iespējas ātrāk.">
+               data-lv="Vai jums ir projekts prātā vai jautājums par mūsu darbu? Mēs labprāt uzklausīsim. Aizpildiet formu, un mēs sazināsimies pēc iespējas ātrāk."
+               data-ru="Есть проект или вопрос о нашей работе? Мы рады вас выслушать. Заполните форму, и мы свяжемся с вами как можно скорее.">
               Have a project in mind or a question about our work? We'd love to hear from you. Fill in the form and we'll get back to you as soon as possible.
             </p>
             <div class="contact-detail" data-copy="milastudio@email.com">
@@ -176,54 +205,56 @@
           <div class="reveal">
             <form id="contact-form" novalidate>
               <div class="form-group">
-                <label for="name" data-en="Your Name" data-lv="Jūsu vārds">Your Name</label>
+                <label for="name" data-en="Your Name" data-lv="Jūsu vārds" data-ru="Ваше имя">Your Name</label>
                 <input type="text" id="name" name="from_name"
                        placeholder="Jane Smith"
-                       data-en-ph="Jane Smith" data-lv-ph="Jānis Bērziņš" required />
+                       data-en-ph="Jane Smith" data-lv-ph="Jānis Bērziņš" data-ru-ph="Иван Иванов" required />
               </div>
               <div class="form-group">
-                <label for="email" data-en="Email Address" data-lv="E-pasta adrese">Email Address</label>
+                <label for="email" data-en="Email Address" data-lv="E-pasta adrese" data-ru="Электронная почта">Email Address</label>
                 <input type="email" id="email" name="from_email" placeholder="jane@example.com" required />
               </div>
               <div class="form-group">
-                <label for="phone" data-en="Phone (optional)" data-lv="Telefons (neobligāti)">Phone (optional)</label>
+                <label for="phone" data-en="Phone (optional)" data-lv="Telefons (neobligāti)" data-ru="Телефон (необязательно)">Phone (optional)</label>
                 <input type="tel" id="phone" name="phone"
                        placeholder="+371 00 000 000"
-                       data-en-ph="+371 00 000 000" data-lv-ph="+371 00 000 000" />
+                       data-en-ph="+371 00 000 000" data-lv-ph="+371 00 000 000" data-ru-ph="+371 00 000 000" />
               </div>
               <div class="form-group">
-                <label data-en="Service of Interest" data-lv="Interesējošais pakalpojums">Service of Interest</label>
+                <label data-en="Service of Interest" data-lv="Interesējošais pakalpojums" data-ru="Интересующая услуга">Service of Interest</label>
                 <div class="custom-select" id="service-select">
                   <button type="button" class="select-trigger" aria-haspopup="listbox" aria-expanded="false">
-                    <span class="select-value" data-en="— Select —" data-lv="— Izvēlēties —">— Select —</span>
+                    <span class="select-value" data-en="— Select —" data-lv="— Izvēlēties —" data-ru="— Выбрать —">— Select —</span>
                     <svg class="select-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                       <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </button>
                   <ul class="select-list" role="listbox">
-                    <li role="option" data-value="" data-en="— Select —" data-lv="— Izvēlēties —">— Select —</li>
-                    <li role="option" data-value="wood"   data-en="Wood Engraving"       data-lv="Koka gravēšana">Wood Engraving</li>
-                    <li role="option" data-value="glass"  data-en="Glassware"             data-lv="Stikla izstrādājumi">Glassware</li>
-                    <li role="option" data-value="apparel" data-en="Custom Apparel" data-lv="Personalizēts apģērbs">Custom Apparel</li>
-                    <li role="option" data-value="custom" data-en="Custom Gift"           data-lv="Individuāla dāvana">Custom Gift</li>
-                    <li role="option" data-value="other"  data-en="Other"                 data-lv="Cits">Other</li>
+                    <li role="option" data-value=""       data-en="— Select —"     data-lv="— Izvēlēties —"        data-ru="— Выбрать —">— Select —</li>
+                    <li role="option" data-value="wood"   data-en="Wood Engraving" data-lv="Koka gravēšana"         data-ru="Гравировка по дереву">Wood Engraving</li>
+                    <li role="option" data-value="glass"  data-en="Glassware"      data-lv="Stikla izstrādājumi"    data-ru="Стеклянные изделия">Glassware</li>
+                    <li role="option" data-value="apparel" data-en="Custom Apparel" data-lv="Personalizēts apģērbs" data-ru="Одежда на заказ">Custom Apparel</li>
+                    <li role="option" data-value="custom" data-en="Custom Gift"    data-lv="Individuāla dāvana"     data-ru="Индивидуальный подарок">Custom Gift</li>
+                    <li role="option" data-value="other"  data-en="Other"          data-lv="Cits"                   data-ru="Другое">Other</li>
                   </ul>
                   <input type="hidden" name="service" id="service" value="" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="message" data-en="Message" data-lv="Ziņojums">Message</label>
+                <label for="message" data-en="Message" data-lv="Ziņojums" data-ru="Сообщение">Message</label>
                 <textarea id="message" name="message"
                           placeholder="Tell us about your project…"
                           data-en-ph="Tell us about your project…"
-                          data-lv-ph="Pastāstiet par savu projektu…" required></textarea>
+                          data-lv-ph="Pastāstiet par savu projektu…"
+                          data-ru-ph="Расскажите о вашем проекте…" required></textarea>
               </div>
               <button type="submit" class="btn btn-red"
-                      data-en="Send Message" data-lv="Nosūtīt ziņojumu">Send Message</button>
+                      data-en="Send Message" data-lv="Nosūtīt ziņojumu" data-ru="Отправить сообщение">Send Message</button>
             </form>
             <div id="form-success" class="form-success"
                  data-en="Thank you! We'll be in touch shortly."
-                 data-lv="Paldies! Mēs drīz sazināsimies.">
+                 data-lv="Paldies! Mēs drīz sazināsimies."
+                 data-ru="Спасибо! Мы свяжемся с вами в ближайшее время.">
               Thank you! We'll be in touch shortly.
             </div>
           </div>
@@ -236,7 +267,8 @@
       <img src="Logo Text.png" alt="MILA" class="footer-logo" />
       <p>
         <span data-en="© 2026 Engraving Studio MILA. All rights reserved."
-              data-lv="© 2026 Engraving Studio MILA. Visas tiesības aizsargātas.">
+              data-lv="© 2026 Engraving Studio MILA. Visas tiesības aizsargātas."
+              data-ru="© 2026 Engraving Studio MILA. Все права защищены.">
           © 2026 Engraving Studio MILA. All rights reserved.
         </span>
       </p>

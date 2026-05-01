@@ -3,7 +3,7 @@
   const KEY  = 'mila-auth';
   const PASS = 'Zabaki';
 
-  if (localStorage.getItem(KEY) === '1') return; // already unlocked
+  if (localStorage.getItem(KEY) === '1') return;
 
   const strings = {
     en: {
@@ -26,7 +26,6 @@
 
   let gateLang = localStorage.getItem('mila-lang') || 'en';
 
-  // Inject gate overlay
   const gate = document.createElement('div');
   gate.id = 'pw-gate';
   gate.innerHTML = `
@@ -107,7 +106,6 @@ let isFlipped   = false;
 let flipTimer   = null;
 
 if (logoWrap && logoFlipper) {
-  // Tilt on mouse move
   logoWrap.addEventListener('mousemove', e => {
     if (isFlipped) return;
     const rect = logoWrap.getBoundingClientRect();
@@ -124,19 +122,16 @@ if (logoWrap && logoFlipper) {
     setTimeout(() => { if (!isFlipped) logoFlipper.style.transition = ''; }, 580);
   });
 
-  // Coin flip on click
   logoWrap.addEventListener('click', () => {
     if (isFlipped) return;
     isFlipped = true;
     clearTimeout(flipTimer);
 
-    // Set next quote
     if (logoQuoteEl) {
       logoQuoteEl.textContent = quotes[quoteIndex % quotes.length];
       quoteIndex++;
     }
 
-    // Smoothly reset any tilt, then flip
     logoFlipper.style.transition = 'transform .18s ease';
     logoFlipper.style.transform  = 'scale(1)';
 
@@ -145,7 +140,6 @@ if (logoWrap && logoFlipper) {
       logoFlipper.style.transform  = 'rotateY(180deg)';
     }, 160);
 
-    // Flip back after 3.5 s
     flipTimer = setTimeout(() => {
       logoFlipper.style.transition = 'transform .6s cubic-bezier(.4,0,.2,1)';
       logoFlipper.style.transform  = 'rotateY(0deg)';
@@ -159,26 +153,40 @@ if (logoWrap && logoFlipper) {
 }
 
 // ── Language switcher ────────────────────────────────
+const langMeta = {
+  en: { flag: '🇬🇧', code: 'EN' },
+  lv: { flag: '🇱🇻', code: 'LV' },
+  ru: { flag: '🇷🇺', code: 'RU' },
+};
+
 function swapText(lang) {
   document.querySelectorAll('[data-en]').forEach(el => {
-    el.textContent = lang === 'lv' ? el.dataset.lv : el.dataset.en;
+    el.textContent = el.dataset[lang] || el.dataset.en;
   });
   document.querySelectorAll('[data-en-ph]').forEach(el => {
-    el.placeholder = lang === 'lv' ? el.dataset.lvPh : el.dataset.enPh;
+    const key = lang + 'Ph';
+    el.placeholder = el.dataset[key] || el.dataset.enPh;
   });
-  const btn = document.getElementById('lang-toggle');
-  if (btn) btn.textContent = lang === 'lv' ? 'EN' : 'LV';
-  document.documentElement.lang = lang === 'lv' ? 'lv' : 'en';
+  // Update dropdown trigger
+  const flagEl = document.querySelector('#lang-trigger .lang-flag');
+  const codeEl = document.querySelector('#lang-trigger .lang-code');
+  if (flagEl && codeEl) {
+    const m = langMeta[lang] || langMeta.en;
+    flagEl.textContent = m.flag;
+    codeEl.textContent = m.code;
+  }
+  // Mark active item
+  document.querySelectorAll('.lang-list [data-lang]').forEach(li => {
+    li.classList.toggle('active', li.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
   localStorage.setItem('mila-lang', lang);
 }
 
 function applyLang(lang, animate) {
   if (!animate) { swapText(lang); return; }
 
-  const els = document.querySelectorAll(
-    '[data-en], [data-en-ph], #lang-toggle'
-  );
-
+  const els = document.querySelectorAll('[data-en], [data-en-ph]');
   els.forEach(el => {
     el.style.transition = 'opacity .15s ease';
     el.style.opacity    = '0';
@@ -196,10 +204,22 @@ function applyLang(lang, animate) {
   }, 160);
 }
 
-const langBtn = document.getElementById('lang-toggle');
-if (langBtn) {
-  langBtn.addEventListener('click', () => {
-    applyLang((localStorage.getItem('mila-lang') || 'en') === 'en' ? 'lv' : 'en', true);
+// Language dropdown
+const langDropdown = document.getElementById('lang-dropdown');
+const langTrigger  = document.getElementById('lang-trigger');
+if (langDropdown && langTrigger) {
+  langTrigger.addEventListener('click', e => {
+    e.stopPropagation();
+    langDropdown.classList.toggle('open');
+  });
+  langDropdown.querySelectorAll('.lang-list [data-lang]').forEach(li => {
+    li.addEventListener('click', () => {
+      langDropdown.classList.remove('open');
+      applyLang(li.dataset.lang, true);
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!langDropdown.contains(e.target)) langDropdown.classList.remove('open');
   });
 }
 
@@ -261,9 +281,10 @@ function initCustomSelect(container) {
   items.forEach(item => {
     item.addEventListener('click', () => {
       const lang = localStorage.getItem('mila-lang') || 'en';
-      valueEl.textContent = lang === 'lv' ? item.dataset.lv : item.dataset.en;
+      valueEl.textContent = item.dataset[lang] || item.dataset.en;
       valueEl.dataset.en  = item.dataset.en;
       valueEl.dataset.lv  = item.dataset.lv;
+      valueEl.dataset.ru  = item.dataset.ru;
       if (hidden) hidden.value = item.dataset.value;
       items.forEach(i => i.classList.remove('selected'));
       item.classList.add('selected');
@@ -296,10 +317,9 @@ if (form) {
     e.preventDefault();
     const lang = localStorage.getItem('mila-lang') || 'en';
 
-    // Loading state
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = lang === 'lv' ? 'Sūta…' : 'Sending…';
+      submitBtn.textContent = lang === 'lv' ? 'Sūta…' : lang === 'ru' ? 'Отправка…' : 'Sending…';
     }
 
     const fd = new FormData(form);
@@ -318,7 +338,7 @@ if (form) {
     ]).then(() => {
         form.style.display = 'none';
         if (success) {
-          success.textContent = lang === 'lv' ? success.dataset.lv : success.dataset.en;
+          success.textContent = success.dataset[lang] || success.dataset.en;
           success.style.display = 'block';
         }
       })
@@ -328,9 +348,15 @@ if (form) {
           submitBtn.disabled = false;
           submitBtn.textContent = lang === 'lv'
             ? 'Kļūda — mēģiniet vēlreiz'
+            : lang === 'ru'
+            ? 'Ошибка — попробуйте снова'
             : 'Error — please try again';
           setTimeout(() => {
-            submitBtn.textContent = lang === 'lv' ? 'Nosūtīt ziņojumu' : 'Send Message';
+            submitBtn.textContent = lang === 'lv'
+              ? 'Nosūtīt ziņojumu'
+              : lang === 'ru'
+              ? 'Отправить сообщение'
+              : 'Send Message';
           }, 3000);
         }
       });
@@ -363,10 +389,9 @@ if (lightbox && lightboxInner) {
         clone.style.aspectRatio = '';
         lightboxInner.appendChild(clone);
         if (lightboxDownload) lightboxDownload.classList.add('hidden');
-        // Re-apply language to cloned element
         const lang = localStorage.getItem('mila-lang') || 'en';
         clone.querySelectorAll('[data-en]').forEach(el => {
-          el.textContent = lang === 'lv' ? el.dataset.lv : el.dataset.en;
+          el.textContent = el.dataset[lang] || el.dataset.en;
         });
       }
 

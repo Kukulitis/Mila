@@ -199,31 +199,79 @@ nav ul a.active { color: var(--red); }
 
 /* Language toggle + nav-right */
 .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-.lang-toggle {
+
+/* Language dropdown */
+.lang-dropdown { position: relative; }
+.lang-trigger {
+  display: flex; align-items: center; gap: .4rem;
   background: none;
   border: 1px solid rgba(59,35,20,.3);
   border-radius: 20px;
   color: var(--brown);
-  padding: .3rem .85rem;
+  padding: .3rem .75rem .3rem .6rem;
   font-family: inherit;
   font-size: .72rem;
-  letter-spacing: .2em;
+  letter-spacing: .15em;
   cursor: pointer;
-  transition: background .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease, transform .2s ease;
+  white-space: nowrap;
   line-height: 1.4;
+  transition: background .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease, transform .2s ease;
 }
-.lang-toggle:hover {
+.lang-trigger:hover {
   background: var(--brown);
   color: var(--cream);
   border-color: var(--brown);
   box-shadow: 0 4px 14px rgba(59,35,20,.18);
   transform: translateY(-1px);
 }
-.lang-toggle:active {
+.lang-trigger:active {
   transform: translateY(0px) scale(.96);
   box-shadow: none;
   transition: transform .1s ease, box-shadow .1s ease;
 }
+.lang-flag { font-size: .9rem; line-height: 1; }
+.lang-code { font-size: .72rem; letter-spacing: .2em; }
+.lang-chevron {
+  color: currentColor;
+  flex-shrink: 0;
+  transition: transform .25s ease;
+}
+.lang-dropdown.open .lang-chevron { transform: rotate(180deg); }
+
+.lang-list {
+  position: absolute; top: calc(100% + 7px); right: 0;
+  list-style: none;
+  background: var(--white);
+  border: 1px solid rgba(59,35,20,.12);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(59,35,20,.13);
+  overflow: hidden;
+  min-width: 136px;
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(-6px) scale(.97);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.lang-dropdown.open .lang-list {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+.lang-list li {
+  display: flex; align-items: center; gap: .55rem;
+  padding: .65rem 1rem;
+  cursor: pointer;
+  font-size: .88rem;
+  letter-spacing: .05em;
+  color: var(--brown);
+  border-bottom: 1px solid rgba(59,35,20,.06);
+  transition: background .15s;
+}
+.lang-list li:last-child { border-bottom: none; }
+.lang-list li:hover { background: var(--sand); }
+.lang-list li.active { color: var(--red); font-weight: 600; }
+.lang-list li span { font-size: 1rem; line-height: 1; }
 
 /* Hamburger */
 .nav-toggle {

@@ -9,7 +9,7 @@
     en: {
       badge:       'Under Development',
       heading:     'We\'re Working on Something Special',
-      sub:         'Engraving Studio MILA is currently under construction. Check back soon — something beautiful is on the way.',
+      sub:         'IZVEIDO is currently under construction. Check back soon — something beautiful is on the way.',
       label:       'Enter password to preview',
       placeholder: 'Password',
       error:       'Incorrect password.',
@@ -17,7 +17,7 @@
     lv: {
       badge:       'Izstrādes stadijā',
       heading:     'Mēs strādājam pie kaut kā īpaša',
-      sub:         'Gravēšanas studija MILA pašlaik tiek veidota. Drīzumā atgriezieties — kaut kas skaists ir ceļā.',
+      sub:         'IZVEIDO pašlaik tiek veidota. Drīzumā atgriezieties — kaut kas skaists ir ceļā.',
       label:       'Ievadiet paroli priekšskatījumam',
       placeholder: 'Parole',
       error:       'Nepareiza parole.',
@@ -31,7 +31,7 @@
   gate.innerHTML = `
     <button id="pw-lang" class="pw-lang-btn"></button>
     <div class="pw-box">
-      <img src="Logo Circle.png" alt="MILA" class="pw-logo" />
+      <img src="logo.png" alt="IZVEIDO" class="pw-logo" />
       <span id="pw-badge" class="pw-badge"></span>
       <h1 id="pw-heading" class="pw-heading"></h1>
       <p  id="pw-sub"     class="pw-sub"></p>
@@ -474,6 +474,30 @@ if (lightbox && lightboxInner) {
   }
   initAccordion();
 }());
+
+// ── Page fade-out on navigation ──────────────────────
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+
+  const href = link.getAttribute('href');
+  if (!href) return;
+
+  // Skip pure hash-only links (same-page anchors)
+  if (href.startsWith('#')) return;
+
+  // Skip external / mailto / tel
+  try {
+    const url = new URL(href, location.href);
+    if (url.origin !== location.origin) return;
+    // Skip if same page and only hash differs
+    if (url.pathname === location.pathname && !url.search) return;
+  } catch { return; }
+
+  e.preventDefault();
+  document.body.classList.add('is-leaving');
+  setTimeout(() => { window.location.href = href; }, 290);
+});
 
 // ── Copy contact details to clipboard ────────────────
 document.querySelectorAll('.contact-detail[data-copy]').forEach(el => {

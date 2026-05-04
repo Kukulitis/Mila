@@ -168,11 +168,9 @@ function swapText(lang) {
     el.placeholder = el.dataset[key] || el.dataset.enPh;
   });
   // Update dropdown trigger
-  const flagEl = document.querySelector('#lang-trigger .lang-flag');
   const codeEl = document.querySelector('#lang-trigger .lang-code');
-  if (flagEl && codeEl) {
+  if (codeEl) {
     const m = langMeta[lang] || langMeta.en;
-    flagEl.textContent = m.flag;
     codeEl.textContent = m.code;
   }
   // Mark active item

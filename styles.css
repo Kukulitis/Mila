@@ -804,7 +804,18 @@ form { display: flex; flex-direction: column; gap: 1.2rem; }
   display: block;
 }
 .service-detail-card:hover .svc-img { transform: scale(1.05); }
-.service-detail-card .svc-icon { font-size: 2.8rem; line-height: 1; }
+.service-detail-card .svc-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.service-detail-card .svc-icon img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+}
 .service-detail-card h2 {
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
   font-weight: 400;

@@ -331,8 +331,8 @@ if (form) {
     };
 
     Promise.all([
-      emailjs.send('service_67troma', 'template_g99doym', params),
-      emailjs.send('service_67troma', 'template_jq2wfs5', params),
+      emailjs.send('service_du9bcx2', 'template_g99doym', params),
+      emailjs.send('service_du9bcx2', 'template_jq2wfs5', params),
     ]).then(() => {
         form.style.display = 'none';
         if (success) {

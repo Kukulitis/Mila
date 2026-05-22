@@ -552,6 +552,39 @@ document.addEventListener('click', e => {
   tick();
 }());
 
+// ── Hanging vine — position + parallax ───────────────
+(function () {
+  const wrap    = document.querySelector('.hang-vine-wrap');
+  const vineImg = document.querySelector('.hang-vine');
+  const svc     = document.getElementById('services');
+  if (!wrap || !svc) return;
+
+  function positionWrap() {
+    wrap.style.top    = svc.offsetTop + 'px';
+    // extend 300px past the services section into the gallery section below
+    wrap.style.height = (svc.offsetHeight + 300) + 'px';
+  }
+  positionWrap();
+  window.addEventListener('resize', positionWrap);
+
+  if (!vineImg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let ticking = false;
+  function tick() {
+    const rect     = svc.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1,
+      (-rect.top + window.innerHeight) / (rect.height + window.innerHeight)
+    ));
+    vineImg.style.transform = `translateY(${(0.5 - progress) * 55}px)`;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(tick); ticking = true; }
+  }, { passive: true });
+  tick();
+}());
+
 // ── Copy contact details to clipboard ────────────────
 document.querySelectorAll('.contact-detail[data-copy]').forEach(el => {
   const textEl = el.querySelector('span:last-child');

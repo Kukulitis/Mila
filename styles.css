@@ -1678,17 +1678,19 @@ body {
 .hang-vine-wrap {
   position: absolute;
   right: 0;
-  width: 420px;
-  z-index: 1;   /* below the wave + services so the top is tucked under green */
+  width: 520px;
+  z-index: 2;
   pointer-events: none;
-  /* fade left edge to crop the dark background, keeping only the vine */
-  mask-image: linear-gradient(to right, transparent 0%, black 22%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%);
+  /* left fade crops dark background; top fade makes vine emerge from the wave */
+  mask-image:
+    linear-gradient(to right,  transparent 0%, black 18%),
+    linear-gradient(to bottom, transparent 0%, black 28%);
+  -webkit-mask-image:
+    linear-gradient(to right,  transparent 0%, black 18%),
+    linear-gradient(to bottom, transparent 0%, black 28%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
 }
-
-/* Wave and services render above the vine so the leaf cluster is hidden under green */
-#services { position: relative; z-index: 3; }
-#wave-svc-gallery { position: relative; z-index: 3; }
 
 .hang-vine {
   width: 100%;

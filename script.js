@@ -557,12 +557,17 @@ document.addEventListener('click', e => {
   const wrap    = document.querySelector('.hang-vine-wrap');
   const vineImg = document.querySelector('.hang-vine');
   const wave    = document.getElementById('wave-svc-gallery');
+  const contact = document.getElementById('contact');
   if (!wrap || !wave) return;
 
   function positionWrap() {
-    // nudge up so the leaf cluster is tucked under the green wave
-    wrap.style.top    = (wave.offsetTop - 50) + 'px';
-    wrap.style.height = '580px';
+    // start at the wave so the top-fade makes the vine appear to emerge from green
+    const vineTop    = wave.offsetTop;
+    const vineBottom = contact
+      ? contact.offsetTop + 240
+      : wave.offsetTop + 1400;
+    wrap.style.top    = vineTop + 'px';
+    wrap.style.height = (vineBottom - vineTop) + 'px';
   }
   positionWrap();
   window.addEventListener('resize', positionWrap);
@@ -575,7 +580,7 @@ document.addEventListener('click', e => {
     const progress = Math.max(0, Math.min(1,
       (-rect.top + window.innerHeight) / (rect.height + window.innerHeight)
     ));
-    vineImg.style.transform = `translateY(${(0.5 - progress) * 55}px)`;
+    vineImg.style.transform = `translateY(${(0.5 - progress) * 80}px)`;
     ticking = false;
   }
 

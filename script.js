@@ -536,42 +536,4 @@ document.querySelectorAll('.contact-detail[data-copy]').forEach(el => {
     });
   });
 
-// ── Custom forest cursor ──────────────────────────────
-(function () {
-  if (!window.matchMedia('(pointer: fine)').matches) return;
-
-  const dot  = document.createElement('div');
-  const ring = document.createElement('div');
-  dot.className  = 'cursor-dot';
-  ring.className = 'cursor-ring';
-  document.body.appendChild(dot);
-  document.body.appendChild(ring);
-
-  let mx = -300, my = -300;
-  let rx = -300, ry = -300;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-  });
-
-  (function lerp() {
-    rx += (mx - rx) * 0.10;
-    ry += (my - ry) * 0.10;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(lerp);
-  }());
-
-  const interactive = 'a, button, .service-card, .gallery-item, [data-copy], .nav-toggle, .hero-logo-wrap, .gallery-preview-img, label, .custom-select';
-
-  document.querySelectorAll(interactive).forEach(el => {
-    el.addEventListener('mouseenter', () => { dot.classList.add('cursor-hover');  ring.classList.add('cursor-hover'); });
-    el.addEventListener('mouseleave', () => { dot.classList.remove('cursor-hover'); ring.classList.remove('cursor-hover'); });
-  });
-
-  document.addEventListener('mouseleave', () => { dot.classList.add('cursor-hidden');  ring.classList.add('cursor-hidden'); });
-  document.addEventListener('mouseenter', () => { dot.classList.remove('cursor-hidden'); ring.classList.remove('cursor-hidden'); });
-}());
 });

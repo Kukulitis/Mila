@@ -1655,46 +1655,14 @@ body {
   .section-label::before { animation: none; }
 }
 
-/* ── Custom forest cursor (mouse devices only) ───────── */
-@media (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
-
-  .cursor-dot {
-    position: fixed;
-    width: 7px; height: 7px;
-    background: var(--red);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: width .18s ease, height .18s ease, background .2s ease, opacity .2s ease;
-    will-change: left, top;
-  }
-
-  .cursor-ring {
-    position: fixed;
-    width: 36px; height: 36px;
-    border: 1.5px solid rgba(30,58,24,.60);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99998;
-    transform: translate(-50%, -50%);
-    transition: width .28s ease, height .28s ease,
-                border-color .28s ease, border-width .28s ease, opacity .2s ease;
-    will-change: left, top;
-  }
-
-  .cursor-dot.cursor-hover {
-    width: 11px; height: 11px;
-    background: var(--red);
-  }
-  .cursor-ring.cursor-hover {
-    width: 52px; height: 52px;
-    border-color: var(--red);
-    border-width: 1px;
-    opacity: .45;
-  }
-
-  .cursor-dot.cursor-hidden,
-  .cursor-ring.cursor-hidden { opacity: 0; }
+/* ── Forest cursor ───────────────────────────────────── */
+* {
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='28' viewBox='0 0 24 28'><path d='M4 1 L4 21 L8 16 L11 23 L14 22 L10 14 L17 14 Z' fill='%232D5A27' stroke='%23EDE8DC' stroke-width='1.2' stroke-linejoin='round'/></svg>") 4 1, default;
+}
+a, button, label,
+.service-card, .gallery-item, .gallery-preview-img,
+.nav-toggle, .hero-logo-wrap, .lang-trigger,
+.lang-list li, .custom-select, [data-copy], .lightbox-btn,
+.select-trigger, .select-list li, .pw-lang-btn {
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='28' viewBox='0 0 24 28'><path d='M4 1 L4 21 L8 16 L11 23 L14 22 L10 14 L17 14 Z' fill='%230A1E09' stroke='%23EDE8DC' stroke-width='1.2' stroke-linejoin='round'/></svg>") 4 1, pointer;
 }

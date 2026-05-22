@@ -227,9 +227,11 @@ applyLang(localStorage.getItem('mila-lang') || 'en', false);
 // ── Nav shrink on scroll ─────────────────────────────
 const nav = document.querySelector('nav');
 const scrollHint = document.querySelector('.scroll-hint');
+const heroEl = document.querySelector('.hero');
 
 function updateNav() {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  const threshold = heroEl ? heroEl.offsetHeight - window.innerHeight * 0.2 : 200;
+  nav.classList.toggle('scrolled', window.scrollY > threshold);
   if (scrollHint) {
     const fade = Math.max(0, 1 - window.scrollY / 80);
     scrollHint.style.opacity = fade * 0.6;

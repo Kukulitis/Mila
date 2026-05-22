@@ -519,7 +519,7 @@ section {
 
 /* ── About ───────────────────────────────────────────── */
 #about { position: relative; z-index: 1; }
-.about { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding-left: 4.5rem; }
 .about-text p { font-size: 1.1rem; color: var(--brown2); margin-bottom: 1rem; }
 .about-img-wrap { position: relative; }
 .about-img-wrap::before {
@@ -1228,7 +1228,7 @@ footer .footer-logo {
 
   /* About — stacked editorial layout */
   #about { padding: 0; max-width: 100%; }
-  .about { display: flex; flex-direction: column; gap: 0; align-items: unset; }
+  .about { display: flex; flex-direction: column; gap: 0; align-items: unset; padding-left: 0; }
   .about-img-wrap { position: relative; width: 100%; height: 58vw; min-height: 240px; max-height: 420px; flex-shrink: 0; }
   .about-img-wrap::before { display: none; }
   .about-photo { width: 100%; height: 100%; aspect-ratio: unset; object-fit: cover; border-radius: 0; display: block; }

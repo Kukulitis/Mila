@@ -520,6 +520,38 @@ document.addEventListener('click', e => {
   }, { passive: true });
 }());
 
+// ── Peeking tree — position + parallax ───────────────
+(function () {
+  const wrap    = document.querySelector('.peek-tree-wrap');
+  const treeImg = document.querySelector('.peek-tree');
+  const about   = document.getElementById('about');
+  if (!wrap || !about) return;
+
+  function positionWrap() {
+    wrap.style.top    = about.offsetTop  + 'px';
+    wrap.style.height = about.offsetHeight + 'px';
+  }
+  positionWrap();
+  window.addEventListener('resize', positionWrap);
+
+  if (!treeImg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let ticking = false;
+  function tick() {
+    const rect     = about.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1,
+      (-rect.top + window.innerHeight) / (rect.height + window.innerHeight)
+    ));
+    treeImg.style.transform = `translateY(${(0.5 - progress) * 70}px)`;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(tick); ticking = true; }
+  }, { passive: true });
+  tick();
+}());
+
 // ── Copy contact details to clipboard ────────────────
 document.querySelectorAll('.contact-detail[data-copy]').forEach(el => {
   const textEl = el.querySelector('span:last-child');

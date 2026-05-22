@@ -15,7 +15,7 @@
 <body>
 
   <!-- ── Navigation ─────────────────────────────────── -->
-  <nav>
+  <nav class="scrolled" style="transition:none">
     <a class="nav-logo" href="../">
       <img src="../logo.png" alt="IZVEIDO" />
       <span class="nav-logo-wordmark">IZVEIDO</span>
@@ -211,5 +211,6 @@
   </div><!-- /page-wrapper -->
 
   <script src="../script.js"></script>
+  <script>requestAnimationFrame(() => document.querySelector('nav').style.transition = '');</script>
 </body>
 </html>

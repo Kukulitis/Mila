@@ -1655,14 +1655,3 @@ body {
   .section-label::before { animation: none; }
 }
 
-/* ── Forest cursor ───────────────────────────────────── */
-* {
-  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='28' viewBox='0 0 24 28'><path d='M4 1 L4 21 L8 16 L11 23 L14 22 L10 14 L17 14 Z' fill='%232D5A27' stroke='%23EDE8DC' stroke-width='1.2' stroke-linejoin='round'/></svg>") 4 1, default;
-}
-a, button, label,
-.service-card, .gallery-item, .gallery-preview-img,
-.nav-toggle, .hero-logo-wrap, .lang-trigger,
-.lang-list li, .custom-select, [data-copy], .lightbox-btn,
-.select-trigger, .select-list li, .pw-lang-btn {
-  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='28' viewBox='0 0 24 28'><path d='M4 1 L4 21 L8 16 L11 23 L14 22 L10 14 L17 14 Z' fill='%230A1E09' stroke='%23EDE8DC' stroke-width='1.2' stroke-linejoin='round'/></svg>") 4 1, pointer;
-}

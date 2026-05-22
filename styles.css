@@ -564,7 +564,6 @@ section {
 .service-card {
   padding: 2rem 1.5rem;
   border: 1px solid rgba(38,64,48,.09);
-  border-top: 3px solid var(--red);
   border-radius: var(--radius);
   background: var(--white);
   text-align: center;

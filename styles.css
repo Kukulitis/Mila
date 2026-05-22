@@ -1055,12 +1055,25 @@ form { display: flex; flex-direction: column; gap: 1.2rem; }
   line-height: 0;
   overflow: hidden;
   display: block;
-  margin-top: -1px;  /* close sub-pixel rendering gap */
+  margin-top: -1px;
 }
 .wave-divider svg {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Hero exit wave overlaps the video so there is no dark gap */
+.wave-hero-overlap {
+  position: relative;
+  z-index: 2;
+  margin-top: -60px;
+}
+@media (max-width: 768px) {
+  .wave-hero-overlap { margin-top: -30px; }
+}
+@media (max-width: 480px) {
+  .wave-hero-overlap { margin-top: -18px; }
 }
 
 /* ── CTA button row ──────────────────────────────────── */

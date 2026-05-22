@@ -1067,13 +1067,13 @@ form { display: flex; flex-direction: column; gap: 1.2rem; }
 .wave-hero-overlap {
   position: relative;
   z-index: 2;
-  margin-top: -60px;
+  margin-top: -140px;
 }
 @media (max-width: 768px) {
-  .wave-hero-overlap { margin-top: -30px; }
+  .wave-hero-overlap { margin-top: -80px; }
 }
 @media (max-width: 480px) {
-  .wave-hero-overlap { margin-top: -18px; }
+  .wave-hero-overlap { margin-top: -50px; }
 }
 
 /* ── CTA button row ──────────────────────────────────── */

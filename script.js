@@ -227,13 +227,17 @@ applyLang(localStorage.getItem('mila-lang') || 'en', false);
 // ── Nav shrink on scroll ─────────────────────────────
 const nav = document.querySelector('nav');
 const scrollHint = document.querySelector('.scroll-hint');
-window.addEventListener('scroll', () => {
+
+function updateNav() {
   nav.classList.toggle('scrolled', window.scrollY > 60);
   if (scrollHint) {
     const fade = Math.max(0, 1 - window.scrollY / 80);
     scrollHint.style.opacity = fade * 0.6;
   }
-});
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav(); // set correct state on initial load
 
 // Active nav link
 document.querySelectorAll('nav ul a').forEach(link => {
@@ -496,6 +500,23 @@ document.addEventListener('click', e => {
   document.body.classList.add('is-leaving');
   setTimeout(() => { window.location.href = href; }, 290);
 });
+
+// ── Hero video parallax ──────────────────────────────
+(function () {
+  const heroVideo = document.querySelector('.hero-video');
+  if (!heroVideo) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let ticking = false;
+  function tick() {
+    heroVideo.style.transform = `scale(1.12) translateY(${window.scrollY * 0.14}px)`;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(tick); ticking = true; }
+  }, { passive: true });
+}());
 
 // ── Copy contact details to clipboard ────────────────
 document.querySelectorAll('.contact-detail[data-copy]').forEach(el => {

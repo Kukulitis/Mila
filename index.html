@@ -50,6 +50,10 @@
 
     <!-- ── Hero ───────────────────────────────────────── -->
     <section class="hero" id="home">
+      <video class="hero-video" autoplay muted loop playsinline
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260319_015952_e1deeb12-8fb7-4071-a42a-60779fc64ab6.mp4">
+      </video>
+      <div class="hero-overlay"></div>
       <div class="hero-logo-wrap" id="hero-logo-wrap">
         <div class="logo-flipper" id="logo-flipper">
           <div class="logo-front">
@@ -106,8 +110,8 @@
     </section>
 
     <!-- ── Services ───────────────────────────────────── -->
-    <section id="services" style="background: var(--sand); max-width:100%; padding: var(--gap) clamp(1.5rem,8vw,8rem);">
-      <div style="max-width:1100px; margin:0 auto;">
+    <section id="services" class="section-alt">
+      <div class="section-inner">
         <p class="section-label reveal" data-en="What We Do" data-lv="Ko mēs darām" data-ru="Что мы делаем">What We Do</p>
         <h2 class="section-title reveal" data-en="Our Services" data-lv="Mūsu pakalpojumi" data-ru="Наши услуги">Our Services</h2>
         <div class="divider reveal"></div>
@@ -161,23 +165,23 @@
     </section>
 
     <!-- ── Gallery teaser ─────────────────────────────── -->
-    <section style="text-align:center; padding: var(--gap) 2rem;">
+    <section class="section-center">
       <p class="section-label reveal" data-en="Our Work" data-lv="Mūsu darbi" data-ru="Наши работы">Our Work</p>
       <h2 class="section-title reveal" data-en="See the Craft" data-lv="Apskatīt darbus" data-ru="Посмотреть работы">See the Craft</h2>
-      <div class="divider reveal" style="margin: 0 auto 2rem;"></div>
-      <p class="reveal" style="font-size:1.05rem; color:var(--brown2); font-style:italic; margin-bottom:2rem;"
-         data-en="Browse our gallery for inspiration and past projects."
-         data-lv="Pārlūkojiet mūsu galeriju iedvesmai un iepriekšējiem projektiem."
-         data-ru="Просматривайте нашу галерею для вдохновения и примеров работ.">
-        Browse our gallery for inspiration and past projects.
-      </p>
+      <div class="divider reveal"></div>
+      <div class="gallery-preview reveal">
+        <img class="gallery-preview-img" src="Gallery/WhatsApp Image 2026-04-30 at 09.20.14.jpeg" alt="Engraving work by IZVEIDO" />
+        <img class="gallery-preview-img" src="Gallery/WhatsApp Image 2026-04-30 at 09.33.09.jpeg" alt="Engraving work by IZVEIDO" />
+        <img class="gallery-preview-img" src="Gallery/WhatsApp Image 2026-04-30 at 09.33.10 (2).jpeg" alt="Engraving work by IZVEIDO" />
+        <img class="gallery-preview-img" src="Gallery/WhatsApp Image 2026-04-30 at 09.20.12.jpeg" alt="Engraving work by IZVEIDO" />
+      </div>
       <a href="/gallery/" class="btn btn-red reveal"
          data-en="View Gallery" data-lv="Skatīt galeriju" data-ru="Смотреть галерею">View Gallery</a>
     </section>
 
     <!-- ── Contact ────────────────────────────────────── -->
-    <section id="contact" style="background: var(--sand); max-width:100%; padding: var(--gap) clamp(1.5rem,8vw,8rem);">
-      <div style="max-width:1100px; margin:0 auto;">
+    <section id="contact" class="section-dark">
+      <div class="section-inner">
         <p class="section-label reveal" data-en="Get in Touch" data-lv="Sazinies" data-ru="Связаться">Get in Touch</p>
         <h2 class="section-title reveal" data-en="Contact Us" data-lv="Kontakti" data-ru="Контакты">Contact Us</h2>
         <div class="divider reveal"></div>
@@ -265,14 +269,31 @@
 
     <!-- ── Footer ─────────────────────────────────────── -->
     <footer>
-      <img src="logolight.png" alt="IZVEIDO" class="footer-logo" />
-      <p>
-        <span data-en="© 2026 IZVEIDO. All rights reserved."
-              data-lv="© 2026 IZVEIDO. Visas tiesības aizsargātas."
-              data-ru="© 2026 IZVEIDO. Все права защищены.">
-          © 2026 IZVEIDO. All rights reserved.
-        </span>
-      </p>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="logolight.png" alt="IZVEIDO" class="footer-logo" />
+          <span class="footer-wordmark">IZVEIDO</span>
+          <p class="footer-tagline"
+             data-en="Handcrafted engravings, made with care."
+             data-lv="Rokdarbu gravējumi, veidoti ar rūpību."
+             data-ru="Гравировка ручной работы, создана с заботой.">
+            Handcrafted engravings, made with care.
+          </p>
+        </div>
+        <div class="footer-nav">
+          <a href="#about"    data-en="About"    data-lv="Par mums"    data-ru="О нас">About</a>
+          <a href="/services/" data-en="Services" data-lv="Pakalpojumi" data-ru="Услуги">Services</a>
+          <a href="/gallery/"  data-en="Gallery"  data-lv="Galerija"    data-ru="Галерея">Gallery</a>
+          <a href="#contact"  data-en="Contact"  data-lv="Kontakti"    data-ru="Контакты">Contact</a>
+        </div>
+        <p class="footer-copy">
+          <span data-en="© 2026 IZVEIDO. All rights reserved."
+                data-lv="© 2026 IZVEIDO. Visas tiesības aizsargātas."
+                data-ru="© 2026 IZVEIDO. Все права защищены.">
+            © 2026 IZVEIDO. All rights reserved.
+          </span>
+        </p>
+      </div>
     </footer>
 
   </div><!-- /page-wrapper -->

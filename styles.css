@@ -1539,3 +1539,118 @@ body::before {
 /* ── Page wrapper above texture ──────────────────────── */
 .page-wrapper { position: relative; z-index: 1; }
 nav { z-index: 100; }
+
+/* ════════════════════════════════════════════════════════
+   VISUAL POLISH — shine, glow, depth
+   ════════════════════════════════════════════════════════ */
+
+/* Warmer body gradient — soft light in the upper centre */
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, #FAF5EE 0%, var(--cream) 60%);
+}
+
+/* ── Hero title gold shimmer sweep ──────────────────── */
+.hero h1 {
+  background: linear-gradient(
+    90deg,
+    var(--cream) 25%,
+    #EDD28A 50%,
+    var(--cream) 75%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeIn .8s ease .5s both, heroShimmer 7s linear 2.2s infinite;
+}
+@keyframes heroShimmer {
+  0%   { background-position: 130% center; }
+  100% { background-position: -130% center; }
+}
+
+/* ── Button shine sweep on hover ─────────────────────── */
+.btn { position: relative; overflow: hidden; }
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -80%;
+  width: 45%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,.22),
+    transparent
+  );
+  transform: skewX(-15deg);
+  transition: left .55s ease;
+  pointer-events: none;
+}
+.btn:hover::before { left: 145%; }
+
+/* ── Section title warm amber gradient ───────────────── */
+.section-title {
+  background: linear-gradient(
+    135deg,
+    var(--brown) 0%,
+    #7A4C10 45%,
+    var(--brown) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-dark .section-title {
+  background: linear-gradient(135deg, var(--cream) 0%, #E8C97A 50%, var(--cream) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Divider amber glow ──────────────────────────────── */
+.divider {
+  box-shadow:
+    0 0 8px  rgba(139,94,30,.35),
+    0 0 20px rgba(139,94,30,.14);
+}
+
+/* ── Section label ◆ pulse ───────────────────────────── */
+@keyframes diamondPulse {
+  0%, 100% { opacity: .55; transform: scale(1); }
+  50%       { opacity: .95; transform: scale(1.4); }
+}
+.section-label::before {
+  animation: diamondPulse 3s ease-in-out infinite;
+}
+
+/* ── Service cards — depth shadow ────────────────────── */
+.service-card {
+  box-shadow:
+    0 2px 6px  rgba(38,64,48,.05),
+    0 8px 28px rgba(38,64,48,.09),
+    0 0 0 1px rgba(38,64,48,.04) inset;
+}
+.service-card:hover {
+  box-shadow:
+    0 6px 18px rgba(38,64,48,.10),
+    0 20px 50px rgba(38,64,48,.16),
+    0 0 0 1px rgba(38,64,48,.06) inset;
+}
+
+/* ── About frame amber glow ──────────────────────────── */
+.about-img-wrap::before {
+  box-shadow: 0 0 28px rgba(139,94,30,.10);
+}
+
+/* ── Gallery preview — warm lift on hover ────────────── */
+.gallery-preview-img:hover {
+  filter: saturate(1.08) brightness(1.04);
+}
+
+/* ── Respect reduced motion ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero h1       { animation: none; -webkit-text-fill-color: var(--cream); background: none; }
+  .section-title { animation: none; }
+  .section-label::before { animation: none; }
+}

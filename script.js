@@ -556,13 +556,12 @@ document.addEventListener('click', e => {
 (function () {
   const wrap    = document.querySelector('.hang-vine-wrap');
   const vineImg = document.querySelector('.hang-vine');
-  const svc     = document.getElementById('services');
-  if (!wrap || !svc) return;
+  const wave    = document.getElementById('wave-svc-gallery');
+  if (!wrap || !wave) return;
 
   function positionWrap() {
-    // anchor near the bottom of services so the vine appears to hang from there
-    const attachY = svc.offsetTop + svc.offsetHeight - 140;
-    wrap.style.top    = attachY + 'px';
+    // anchor exactly at the wave where green ends and Our Work begins
+    wrap.style.top    = wave.offsetTop + 'px';
     wrap.style.height = '560px';
   }
   positionWrap();
@@ -572,7 +571,7 @@ document.addEventListener('click', e => {
 
   let ticking = false;
   function tick() {
-    const rect     = svc.getBoundingClientRect();
+    const rect     = wave.getBoundingClientRect();
     const progress = Math.max(0, Math.min(1,
       (-rect.top + window.innerHeight) / (rect.height + window.innerHeight)
     ));

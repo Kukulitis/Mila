@@ -1067,7 +1067,7 @@ form { display: flex; flex-direction: column; gap: 1.2rem; }
   line-height: 0;
   overflow: hidden;
   display: block;
-  margin-top: -1px;
+  margin-top: -3px;
 }
 .wave-divider svg {
   width: 100%;
@@ -1653,4 +1653,48 @@ body {
   .hero h1       { animation: none; -webkit-text-fill-color: var(--cream); background: none; }
   .section-title { animation: none; }
   .section-label::before { animation: none; }
+}
+
+/* ── Custom forest cursor (mouse devices only) ───────── */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+
+  .cursor-dot {
+    position: fixed;
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width .18s ease, height .18s ease, background .2s ease, opacity .2s ease;
+    will-change: left, top;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(30,58,24,.60);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: width .28s ease, height .28s ease,
+                border-color .28s ease, border-width .28s ease, opacity .2s ease;
+    will-change: left, top;
+  }
+
+  .cursor-dot.cursor-hover {
+    width: 11px; height: 11px;
+    background: var(--red);
+  }
+  .cursor-ring.cursor-hover {
+    width: 52px; height: 52px;
+    border-color: var(--red);
+    border-width: 1px;
+    opacity: .45;
+  }
+
+  .cursor-dot.cursor-hidden,
+  .cursor-ring.cursor-hidden { opacity: 0; }
 }

@@ -509,7 +509,7 @@ document.addEventListener('click', e => {
 
   let ticking = false;
   function tick() {
-    heroVideo.style.transform = `scale(1.12) translateY(${window.scrollY * 0.14}px)`;
+    heroVideo.style.transform = `scale(1.25) translateY(${window.scrollY * 0.14 - 60}px)`;
     ticking = false;
   }
 

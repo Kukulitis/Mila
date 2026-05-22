@@ -231,7 +231,7 @@ const heroEl = document.querySelector('.hero');
 
 function updateNav() {
   const threshold = heroEl ? heroEl.offsetHeight - window.innerHeight * 0.2 : 200;
-  nav.classList.toggle('scrolled', window.scrollY > threshold);
+  nav.classList.toggle('scrolled', !heroEl || window.scrollY > threshold);
   if (scrollHint) {
     const fade = Math.max(0, 1 - window.scrollY / 80);
     scrollHint.style.opacity = fade * 0.6;

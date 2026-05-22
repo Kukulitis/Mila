@@ -560,9 +560,9 @@ document.addEventListener('click', e => {
   if (!wrap || !wave) return;
 
   function positionWrap() {
-    // anchor exactly at the wave where green ends and Our Work begins
-    wrap.style.top    = wave.offsetTop + 'px';
-    wrap.style.height = '560px';
+    // nudge up so the leaf cluster is tucked under the green wave
+    wrap.style.top    = (wave.offsetTop - 50) + 'px';
+    wrap.style.height = '580px';
   }
   positionWrap();
   window.addEventListener('resize', positionWrap);

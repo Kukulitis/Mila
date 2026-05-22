@@ -347,7 +347,7 @@ nav ul a.active { color: var(--red); }
   position: relative;
   max-width: none; margin: 0; width: 100%;
   margin-bottom: 0;
-  min-height: 100svh;
+  min-height: 120svh;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center;
@@ -1358,7 +1358,7 @@ nav:not(.scrolled) .nav-toggle span { background: var(--cream); }
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  transform: scale(1.12);
+  transform: scale(1.25);
   transform-origin: center center;
   will-change: transform;
 }

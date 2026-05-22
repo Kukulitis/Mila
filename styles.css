@@ -1323,20 +1323,20 @@ footer .footer-logo {
   .select-list li { padding: 1rem; }
 }
 
-/* ── Nav transparent at top ─────────────────────────── */
+/* ── Nav transparent at top, frosted glass on scroll ─── */
 nav {
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-bottom: 1px solid transparent;
-  transition: background .4s ease, border-color .4s ease,
-              backdrop-filter .4s ease, padding .3s ease, opacity .28s ease;
+  transition: background .6s ease, border-color .6s ease,
+              backdrop-filter .6s ease, padding .3s ease, opacity .28s ease;
 }
 nav.scrolled {
-  background: rgba(245,240,230,.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(28,60,37,.10);
+  background: rgba(245,240,232,.62);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(30,58,24,.08);
 }
 
 /* Light text/icons over dark hero video */

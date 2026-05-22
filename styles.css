@@ -349,9 +349,9 @@ nav ul a.active { color: var(--red); }
   margin-bottom: 0;
   min-height: 120svh;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  align-items: center; justify-content: flex-start;
   text-align: center;
-  padding: 8rem 2rem 6rem;
+  padding: clamp(5rem, 18svh, 11rem) 2rem 6rem;
   background: #040A05;
   overflow: hidden;
 }

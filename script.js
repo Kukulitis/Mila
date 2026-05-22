@@ -560,9 +560,10 @@ document.addEventListener('click', e => {
   if (!wrap || !svc) return;
 
   function positionWrap() {
-    wrap.style.top    = svc.offsetTop + 'px';
-    // extend 300px past the services section into the gallery section below
-    wrap.style.height = (svc.offsetHeight + 300) + 'px';
+    // anchor near the bottom of services so the vine appears to hang from there
+    const attachY = svc.offsetTop + svc.offsetHeight - 140;
+    wrap.style.top    = attachY + 'px';
+    wrap.style.height = '560px';
   }
   positionWrap();
   window.addEventListener('resize', positionWrap);

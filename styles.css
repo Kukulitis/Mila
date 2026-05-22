@@ -1678,12 +1678,12 @@ body {
 .hang-vine-wrap {
   position: absolute;
   right: 0;
-  width: 290px;
+  width: 420px;
   z-index: 2;
   pointer-events: none;
   /* fade left edge to crop the dark background, keeping only the vine */
-  mask-image: linear-gradient(to right, transparent 0%, black 26%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 26%);
+  mask-image: linear-gradient(to right, transparent 0%, black 22%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%);
 }
 
 .hang-vine {

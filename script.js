@@ -503,5 +503,48 @@ document.querySelectorAll('.contact-detail[data-copy]').forEach(el => {
       }, 1800);
     });
   });
-
 });
+
+// ── Hero logo shine + shimmer (SVG-native) ───────────
+(function () {
+  const wrap      = document.getElementById('logo-shine-wrap');
+  if (!wrap) return;
+  const svgShine  = document.getElementById('svg-shine');
+  const svgShimmer = document.getElementById('svg-shimmer');
+  const shineGrad = document.getElementById('shine-grad');
+  const shimmerGrad = document.getElementById('shimmer-grad');
+
+  wrap.addEventListener('mouseenter', () => {
+    svgShine.setAttribute('opacity', '1');
+    runShimmer();
+  });
+
+  wrap.addEventListener('mouseleave', () => {
+    svgShine.setAttribute('opacity', '0');
+  });
+
+  wrap.addEventListener('mousemove', (e) => {
+    const rect = wrap.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width  * 256).toFixed(1);
+    const y = ((e.clientY - rect.top)  / rect.height * 271).toFixed(1);
+    shineGrad.setAttribute('cx', x);
+    shineGrad.setAttribute('cy', y);
+  });
+
+  function runShimmer() {
+    const duration = 950;
+    const start = performance.now();
+    svgShimmer.setAttribute('opacity', '1');
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      const mid = -0.5 + ease * 1.5;
+      shimmerGrad.setAttribute('x1', (mid - 0.4).toFixed(3));
+      shimmerGrad.setAttribute('x2', (mid + 0.4).toFixed(3));
+      svgShimmer.setAttribute('opacity', t < 0.7 ? '1' : (1 - (t - 0.7) / 0.3).toFixed(2));
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+})();

@@ -363,12 +363,29 @@ nav ul a.active { color: var(--red); }
   animation: popIn .8s cubic-bezier(.34,1.56,.64,1) .2s both;
 }
 
-.hero-logo-3d {
+.hero-logo-svg-wrap {
+  position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  cursor: default;
+  user-select: none;
+}
+
+.hero-logo-svg-wrap svg {
+  width: 100%;
+  height: auto;
   display: block;
-  --progress-bar-color: transparent;
-  --poster-color: transparent;
+  filter: drop-shadow(0 0 14px rgba(212, 185, 140, 0.18));
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.45s ease;
+}
+
+.hero-logo-svg-wrap:hover svg {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 30px rgba(212, 185, 140, 0.5));
+}
+
+.hero-logo-svg-wrap svg path {
+  fill: #EEE5D3;
 }
 
 @keyframes popIn {
